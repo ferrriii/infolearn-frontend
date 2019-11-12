@@ -1,0 +1,79 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  -webkit-font-smoothing: antialiased;
+}
+html,
+body {
+  height: 100%;
+  /* disable pull to refresh on mobile */
+  overscroll-behavior-y: contain;
+}
+:root {
+  --primary-color: #003348;
+  --secondary-color: #32225f;
+  --light-color: #f0fff0;
+}
+input:focus {
+  outline: none;
+}
+
+#app {
+  height: 100%;
+}
+
+.light {
+  color: var(--light-color);
+}
+.bg-light {
+  background-color: var(--light-color);
+}
+
+.primary {
+  color: var(--primary-color);
+}
+.bg-primary {
+  background-color: var(--primary-color);
+}
+.hover-bg-primary:hover {
+  background-color: var(--primary-color);
+}
+.b--primary {
+  border-color: var(--primary-color);
+}
+.cursor-hand {
+  cursor: pointer;
+}
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* remove outline in tachyons.css links */
+.link:focus {
+  outline: none;
+}
+
+/* we don't need dimmed link when they're clicked */
+.dim:focus {
+  opacity: 1;
+}
+.dim:hover {
+  opacity: 0.5;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
+

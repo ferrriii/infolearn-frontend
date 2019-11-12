@@ -1,0 +1,8 @@
+
+refactor: cleanup & seperate
+
+show CTA for subscription if there's nothing to view
+private public books
+likes for texts
+
+write tests
