@@ -8,7 +8,7 @@
       </div>
     </li>
     <transition name="fade" mode="out-in">
-      <h1 :key="text.id" dir="auto" class="f3 f2-m f1-l flex-grow flex flex-column justify-center ph3 pre measure-narrow lh-copy">{{text.text}}</h1>
+      <h1 :key="text.id" dir="auto" class="f3 f2-m f1-l flex-grow flex flex-column justify-center ph3 pre overflow-hidden measure-narrow lh-copy">{{text.text}}</h1>
     </transition>
     <div class="flex justify-between f3">
       <span class="flex items-center">
