@@ -2,7 +2,8 @@
   <div @click="nextText" :style="{ backgroundColor, color}" class="about absolute top-0 w-100 flex flex-column flex-grow h-100 justify-between items-center disable-select bg-animate-slow">
     <div class="mw-100 mw9-ns w-90 h-75 flex justify-center">
 
-      <TextDisplay v-if="hasText" :text="text"/>
+      <text-display v-if="hasText" :text="text"/>
+      <empty-text v-if="!hasText" />
 
     </div>
     <div class="o-90 w-100 f4 shadow-1 white bg-black flex justify-between">
@@ -15,6 +16,7 @@
 
 <script>
 import TextDisplay from '@/components/text.vue'
+import EmptyText from '@/components/empty-text.vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -120,7 +122,8 @@ export default {
     // otherwise it will be called whenever isAuthorized is changed
   },
   components: {
-    TextDisplay
+    TextDisplay,
+    EmptyText
   }
 }
 </script>
