@@ -69,7 +69,7 @@ export default {
       }
     }
   },
-  mounted () {
+  activated () {
     this.q = this.$route.query.q
     this.$refs.query.value = this.q
   },
