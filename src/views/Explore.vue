@@ -2,7 +2,7 @@
   <div class="about absolute top-0 w-100 flex flex-column flex-grow h-100 justify-between items-center bg-light primary" >
     <div class="mw-100 mw9-ns w-100 h-100 mv1 flex justify-center">
       <div class="flex flex-column mw8 w-90 pv1 pt3-l">
-        <input @input="debounceQuery" class="ba br4 pa2 b--black-30" placeholder="Search...">
+        <input ref="query" @input="debounceQuery" class="ba br4 pa2 b--black-30" placeholder="Search...">
 
         <div class="mt1 o-90 w-100 f6 fw4 flex justify-between">
           <div class="w-33 pv2 tc bb bw1 cursor-hand o-70 b--black-30">texts</div>
@@ -68,6 +68,10 @@ export default {
         this.$set(book, 'subscribed', true)
       }
     }
+  },
+  mounted () {
+    this.q = this.$route.query.q
+    this.$refs.query.value = this.q
   },
   components: {
     Card
