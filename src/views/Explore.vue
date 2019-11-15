@@ -70,6 +70,7 @@ export default {
     }
   },
   activated () {
+    if (!this.$route.query.q) return
     this.q = this.$route.query.q
     this.$refs.query.value = this.q
   },
