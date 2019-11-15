@@ -4,7 +4,7 @@
 
       <div class="flex flex-column mw8 w-90 pv1 pt3-l">
         <li class="flex items-center lh-copy pv3 pr3">
-          <img class="w2-5 h2-5 w3-ns h3-ns br-100 bg-secondary" src="https://avatars.dicebear.com/v2/initials/ssa.svg" />
+          <img class="w2-5 h2-5 w3-ns h3-ns br-100 bg-secondary" :src="`https://avatars.dicebear.com/v2/initials/${book.title}.svg`" />
           <div class="pl3 flex-auto">
             <span class="f5 f4-ns db b">{{book.title}}</span>
             <span class="f6 f5-ns db o-70">{{book.description}}</span>

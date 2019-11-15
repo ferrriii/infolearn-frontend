@@ -3,12 +3,14 @@
     <div class="mw-100 mw9-ns w-100 h-100 flex justify-center">
 
       <div class="flex flex-column mw8 w-90 pv1 pt3-l">
+        <!--
         <li class="flex items-center lh-copy pv3 pr3">
           <img class="w2-5 h2-5 w3-ns h3-ns br-100 bg-secondary" src="https://avatars.dicebear.com/v2/initials/ssa.svg" />
           <div class="pl3 flex-auto">
             <span class="f5 f4-ns db b">504</span>
           </div>
         </li>
+        -->
         <div class="flex justify-between items-center pv1">
           <span>collections</span>
           <router-link to="/me/newbook">
@@ -18,7 +20,7 @@
           </router-link>
         </div>
         <div class="flex-grow overflow-y-auto bt bw1 b--black-30" style="height:0px; min-height:50px">
-          <Card v-for="book in collections" :key="book.id" :title="book.title" :subtitle="book.lastText" :book="book">
+          <Card v-for="book in collections" :key="book.id" :title="book.title" :subtitle="book.lastText" :book="book" :img="`https://avatars.dicebear.com/v2/initials/${book.title}.svg`">
             <div v-if="book.subscribed" @click="unsubscribe(book)" class="f6 dib br-pill ba b--black-10 dim cursor-hand primary pv1 ph2 pv2-ns ph3-ns mh1" type="submit">Unsub</div>
             <div v-if="!book.subscribed" @click="subscribe(book)" class="f6 dib bg-primary br-pill ba b--black-10 dim cursor-hand white pv1 ph2 pv2-ns ph3-ns mh1" type="submit">Subscribe</div>
             <router-link :to="{ name: 'publish', params: { book }}">

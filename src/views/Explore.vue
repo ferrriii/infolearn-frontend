@@ -11,7 +11,7 @@
         </div>
 
         <div class="flex-grow overflow-y-auto" style="height:0px; min-height:50px">
-          <Card v-for="book in collections" :key="book.id" :title="book.title" :subtitle="book.lastText" :book="book">
+          <Card v-for="book in collections" :key="book.id" :title="book.title" :subtitle="book.lastText" :book="book" :img="`https://avatars.dicebear.com/v2/initials/${book.title}.svg`">
             <div v-if="book.subscribed" @click="unsubscribe(book)" class="f6 dib br-pill ba b--black-10 dim cursor-hand primary pv1 ph2 pv2-ns ph3-ns mh1" type="submit">Unsub</div>
             <div v-if="!book.subscribed" @click="subscribe(book)" class="f6 dib bg-primary br-pill ba b--black-10 dim cursor-hand white pv1 ph2 pv2-ns ph3-ns mh1" type="submit">Subscribe</div>
           </Card>
