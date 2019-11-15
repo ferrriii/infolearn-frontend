@@ -93,13 +93,7 @@ export default {
 </script>
 
 <style>
-.resize-none {
-  resize: none;
-}
-.bb-only {
-  border-style: none;
-  border-width: 0;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
+a {
+  text-decoration: none;
 }
 </style>
