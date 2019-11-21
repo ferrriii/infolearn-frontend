@@ -1,10 +1,10 @@
 <template>
     <modal @close="$emit('cancel')" v-slot="slotProps">
-      <div class="pa2 bg-black--10 bb bw1 b--black-20 flex justify-between items-center">
-        <span @click="slotProps.close" class="cursor-hand br-100 bg-black-10 w1 h1 flex flex-column justify-center tc pa1">X</span>
+      <div class="bg-black--10 bb bw1 b--black-20 flex justify-between items-center">
+        <span @click="slotProps.close" class="cursor-hand w1 flex flex-column justify-center tc pa2">X</span>
         <span>Create Book</span>
-        <span v-if="canCreate" @click="create(slotProps)" class="primary b cursor-hand">Create</span>
-        <span v-if="!canCreate" class="primary b o-70">Create</span>
+        <span v-if="canCreate" @click="create(slotProps)" class="primary b cursor-hand pa2">Create</span>
+        <span v-if="!canCreate" class="primary b o-70 pa2">Create</span>
       </div>
       <form class="pv2 black-80">
         <div>
