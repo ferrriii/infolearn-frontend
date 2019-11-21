@@ -38,7 +38,7 @@ export default {
     async create ({ close }) {
       close()
       let response = await this.$axios.post('/books/', { title: this.title, description: this.description })
-      if (response.status === 200) {
+      if (response.status === 204) {
         let body = response.data
         let book = body.data
         this.$emit('bookCreated', book)

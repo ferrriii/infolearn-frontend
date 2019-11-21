@@ -70,7 +70,7 @@ export default {
   methods: {
     async subscribe (book) {
       let response = await this.$axios.post('/subscribe', { book: book.id })
-      if (response.status === 200) {
+      if (response.status === 204) {
         this.$set(book, 'subscribed', true)
       }
     },
