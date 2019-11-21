@@ -11,7 +11,7 @@
           </span>
         </div>
 
-        <textarea v-model="text" maxlength="115" dir="auto" class="bw0 resize-none bg-transparent flex-grow pa2 f3 f2-m f1-l lh-copy" placeholder="type here..."></textarea>
+        <textarea v-model="text" maxlength="115" dir="auto" class="bw0 resize-none bg-transparent outline-0 flex-grow pa3 f3 f2-m f1-l lh-copy" placeholder="type here..."></textarea>
       </div>
 
     </div>
