@@ -1,9 +1,18 @@
-# infoshare
+# InfoLearn
+InfoLearn is a social network for learning. You can publish short texts and InfoLearn repeats these texts for you to memorize them.
 
-## Project setup
+This repository is the frontend code in VueJs. it proivdes user interface for InfoLearn.
+
+## Setup
+Create an `.env.developement` and `.env.production` files in the root with below contents
+```
+VUE_APP_API_URL=http://localhost:3000/ #frontend api end point
+```
+then
 ```
 npm install
 ```
+For frontend API see [InfoLearn frontend repositry](https://github.com/ferrriii/infolearn-frontend).
 
 ### Compiles and hot-reloads for development
 ```
@@ -15,7 +24,7 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
+### Test
 ```
 npm run test
 ```
@@ -25,15 +34,12 @@ npm run test
 npm run lint
 ```
 
-### Run your end-to-end tests
+### e2e test
 ```
 npm run test:e2e
 ```
 
-### Run your unit tests
+### Unit test
 ```
 npm run test:unit
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
