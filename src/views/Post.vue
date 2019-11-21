@@ -2,17 +2,16 @@
   <div class="about absolute top-0 w-100 flex flex-column flex-grow h-100 justify-between items-center bg-light primary" >
     <div class="mw-100 mw9-ns w-100 h-100 flex justify-center">
 
-      <div class="flex flex-column mw8 w-90 pv1 pt3-l">
-        <li class="flex items-center lh-copy pv3 pr3">
-          <img class="w2-5 h2-5 w3-ns h3-ns br-100 bg-secondary" :src="`https://avatars.dicebear.com/v2/initials/${book.title}.svg`" />
-          <div class="pl3 flex-auto">
-            <span class="f5 f4-ns db b">{{book.title}}</span>
-            <span class="f6 f5-ns db o-70">{{book.description}}</span>
-          </div>
-          <font-awesome-icon :icon="['fas', 'paper-plane']" @click="post" class="mh3 f3 cursor-hand" v-bind:class="{ 'black': canSend, 'black-40': !canSend }" />
-        </li>
-        <textarea v-model="text" maxlength="115" dir="auto" class="bw0 resize-none bg-transparent flex-grow pa2 f3 f2-m f1-l lh-copy" placeholder="type here..."></textarea>
+      <div class="flex flex-column mw8 w-100">
+        <div class="bg-black--10 bb bw1 b--black-20 flex justify-between items-center">
+          <span @click="$router.go(-1)" class="cursor-hand w1 flex flex-column justify-center tc pa2">&lt;</span>
+          <span>Post in {{book.title}}</span>
+          <span class="primary b o-70 pa1">
+            <font-awesome-icon :icon="['fas', 'paper-plane']" @click="post" class="mh3 f3 cursor-hand" v-bind:class="{ 'black': canSend, 'black-40': !canSend }" />
+          </span>
+        </div>
 
+        <textarea v-model="text" maxlength="115" dir="auto" class="bw0 resize-none bg-transparent flex-grow pa2 f3 f2-m f1-l lh-copy" placeholder="type here..."></textarea>
       </div>
 
     </div>
@@ -45,7 +44,7 @@ export default {
         text: this.text,
         book: this.book.id
       })
-      if (response.status === 200) {
+      if (response.status === 204) {
         this.text = ''
       }
     }
