@@ -12,7 +12,7 @@
         </li>
         -->
         <div class="flex justify-between items-center pv1">
-          <span>collections</span>
+          <span>My Books</span>
           <router-link to="/me/newbook">
           <div class="bg-primary white br-100 w2 h2 dtc tc dim cursor-hand">
             <span class="f3 white v-mid">+</span>
@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     ellipsis (txt) {
-      if (txt && txt.length > 22) return txt.substr(0,23) + '…'
+      if (txt && txt.length > 19) return txt.substr(0, 19) + '…'
       return txt
     },
     async subscribe (book) {
