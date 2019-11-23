@@ -1,7 +1,9 @@
 <template>
     <modal @close="$emit('cancel')" v-slot="slotProps">
       <div class="bg-black--10 bb bw1 b--black-20 flex justify-between items-center">
-        <span @click="slotProps.close" class="cursor-hand w1 flex flex-column justify-center tc pa2">X</span>
+        <span @click="slotProps.close" class="cursor-hand flex flex-column justify-center tc h2">
+          <font-awesome-icon :icon="['fas', 'times']" class="mh3 f4" />
+        </span>
         <span>Create Book</span>
         <span v-if="canCreate" @click="create(slotProps)" class="primary b cursor-hand pa2">Create</span>
         <span v-if="!canCreate" class="primary b o-70 pa2">Create</span>
