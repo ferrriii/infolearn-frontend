@@ -3,11 +3,13 @@
     <div class="mw-100 mw9-ns w-100 h-100 flex justify-center">
 
       <div class="flex flex-column mw8 w-100">
-        <div class="bg-black--10 bb bw1 b--black-20 flex justify-between items-center">
-          <span @click="$router.go(-1)" class="cursor-hand w1 flex flex-column justify-center tc pa2">&lt;</span>
+        <div class="bg-black--10 bb bw1 b--black-20 flex justify-between items-center pv1">
+          <span @click="$router.go(-1)" class="cursor-hand w1 flex flex-column justify-center tc pa2">
+            <font-awesome-icon :icon="['fas', 'arrow-left']" class="mh3 f3" />
+          </span>
           <span>Post in {{book.title}}</span>
-          <span class="primary b o-70 pa1">
-            <font-awesome-icon :icon="['fas', 'paper-plane']" @click="post" class="mh3 f3 cursor-hand" v-bind:class="{ 'black': canSend, 'black-40': !canSend }" />
+          <span  @click="post" class="primary b pa1 cursor-hand">
+            <font-awesome-icon :icon="['fas', 'paper-plane']" class="mh3 f3" v-bind:class="{ 'black': canSend, 'black-40': !canSend }" />
           </span>
         </div>
 
