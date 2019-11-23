@@ -20,7 +20,7 @@
           </router-link>
         </div>
         <div class="flex-grow overflow-y-auto bt bw1 b--black-30" style="height:0px; min-height:50px">
-          <Card v-for="book in collections" :key="book.id" :title="book.title" :subtitle="ellipsis(book.lastText)" :book="book" :img="`https://avatars.dicebear.com/v2/initials/${book.title}.svg`">
+          <Card v-for="book in collections" :key="book.id" :title="ellipsis(book.title)" :subtitle="ellipsis(book.lastText)" :book="book" :img="`https://avatars.dicebear.com/v2/initials/${book.title}.svg`">
             <div v-if="book.subscribed" @click="unsubscribe(book)" class="f6 dib br-pill ba b--black-10 dim cursor-hand primary pv1 ph2 pv2-ns ph3-ns mh1" type="submit">Unsub</div>
             <div v-if="!book.subscribed" @click="subscribe(book)" class="f6 dib bg-primary br-pill ba b--black-10 dim cursor-hand white pv1 ph2 pv2-ns ph3-ns mh1" type="submit">Subscribe</div>
             <router-link :to="{ name: 'publish', params: { book }}">
@@ -46,6 +46,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import Card from '@/components/card.vue'
+import { ellipsis } from '@/modules/utils.js'
 
 export default {
   data () {
@@ -68,10 +69,7 @@ export default {
     }
   },
   methods: {
-    ellipsis (txt) {
-      if (txt && txt.length > 19) return txt.substr(0, 19) + '…'
-      return txt
-    },
+    ellipsis,
     async subscribe (book) {
       let response = await this.$axios.post('/subscribe', { book: book.id })
       if (response.status === 204) {

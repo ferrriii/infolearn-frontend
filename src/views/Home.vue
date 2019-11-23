@@ -18,6 +18,7 @@
 import TextDisplay from '@/components/text.vue'
 import EmptyText from '@/components/empty-text.vue'
 import { mapGetters } from 'vuex'
+import { str2color, blackOrWhite } from '@/modules/utils.js'
 
 export default {
   data () {
@@ -37,17 +38,13 @@ export default {
     },
     backgroundColor () {
       if (this.hasText) {
-        return '#' + this.intToRGB(this.hashCode(this.text.text))
+        return str2color(this.text.text)
       } else {
         return '#f0fff0'
       }
     },
     color () {
-      let rgb = this.hexToRgb(this.backgroundColor)
-      var o = Math.round(((parseInt(rgb.r) * 299) +
-                          (parseInt(rgb.g) * 587) +
-                          (parseInt(rgb.b) * 114)) / 1000)
-      return (o > 125) ? 'black' : 'white'
+      return blackOrWhite(this.backgroundColor)
     }
   },
   watch: {
@@ -58,30 +55,6 @@ export default {
     }
   },
   methods: {
-    // https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
-    hashCode (str) { // java String#hashCode
-      var hash = 0
-      for (var i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash)
-      }
-      return hash
-    },
-    intToRGB (i) {
-      var c = (i & 0x00FFFFFF)
-        .toString(16)
-        .toUpperCase()
-
-      return '00000'.substring(0, 6 - c.length) + c
-    },
-    // https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
-    hexToRgb (hex) {
-      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-      return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-      } : null
-    },
     async loadTexts (timeOffset = null) {
       let response = await this.$axios.get(`/text/next?time=${timeOffset}`)
       let body = response.data
@@ -120,6 +93,10 @@ export default {
       this.initializeTexts()
     }
     // otherwise it will be called whenever isAuthorized is changed
+  },
+  async activated () {
+    if (this.hasText) return
+    this.initializeTexts()
   },
   components: {
     TextDisplay,
