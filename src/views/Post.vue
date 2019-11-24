@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     ellipsisTitle (str) {
-      return ellipsis(str, 19 + (window.screen.width - 375)/ 20)
+      return ellipsis(str, 19 + (window.screen.width - 375) / 20)
     },
     async post () {
       if (!this.text) return
