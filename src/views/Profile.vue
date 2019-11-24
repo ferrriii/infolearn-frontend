@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     ellipsisCardText (str) {
-      return ellipsis(str, 19 + (window.screen.width - 375)/ 20)
+      return ellipsis(str, 19 + (window.screen.width - 375) / 20)
     },
     async subscribe (book) {
       let response = await this.$axios.post('/subscribe', { book: book.id })
