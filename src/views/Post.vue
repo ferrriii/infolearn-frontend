@@ -7,7 +7,7 @@
           <span @click="$router.go(-1)" class="cursor-hand w1 flex flex-column justify-center tc pa2">
             <font-awesome-icon :icon="['fas', 'arrow-left']" class="mh3 f3" />
           </span>
-          <span>Post in {{ellipsis(book.title)}}</span>
+          <span>Post in {{ellipsisTitle(book.title)}}</span>
           <span  @click="post" class="primary b pa1 cursor-hand">
             <font-awesome-icon :icon="['fas', 'paper-plane']" class="mh3 f3" v-bind:class="{ 'black': canSend, 'black-40': !canSend }" />
           </span>
@@ -42,7 +42,9 @@ export default {
     }
   },
   methods: {
-    ellipsis,
+    ellipsisTitle (str) {
+      return ellipsis(str, 19 + (window.screen.width - 375)/ 20)
+    },
     async post () {
       if (!this.text) return
       let response = await this.$axios.post('/publish', {
