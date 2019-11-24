@@ -2,8 +2,8 @@
   <div @click="nextText" :style="{ backgroundColor, color}" class="about absolute top-0 w-100 flex flex-column flex-grow h-100 justify-between items-center disable-select bg-animate-slow">
     <div class="mw-100 mw9-ns w-90 h-75 flex justify-center">
 
-      <text-display v-if="hasText" :text="text"/>
-      <empty-text v-if="!hasText" />
+      <text-display v-if="displayText" :text="text"/>
+      <empty-text v-if="displayCTA" />
 
     </div>
     <div class="o-90 w-100 f4 shadow-1 white bg-black flex justify-between">
@@ -23,8 +23,9 @@ import { str2color, blackOrWhite } from '@/modules/utils.js'
 export default {
   data () {
     return {
-      index: -1,
-      texts: []
+      index: 0,
+      texts: [],
+      textsLoaded: false
     }
   },
   computed: {
@@ -32,8 +33,14 @@ export default {
     hasText () {
       return this.texts.length > 0 && this.index >= 0 && this.index < this.texts.length
     },
+    displayText () {
+      return this.hasText
+    },
+    displayCTA () {
+      return this.textsLoaded && !this.hasText
+    },
     text () {
-      if (this.index > this.texts.length) return {}
+      if (!this.hasText) return {}
       return this.texts[this.index]
     },
     backgroundColor () {
@@ -47,26 +54,27 @@ export default {
       return blackOrWhite(this.backgroundColor)
     }
   },
-  watch: {
-    isAuthorized (newVal, oldVal) {
-      if (newVal) {
-        this.initializeTexts()
-      }
-    }
-  },
+  // watch: {
+  //   isAuthorized (newVal, oldVal) {
+  //     if (newVal) {
+  //       this.initializeTexts()
+  //     }
+  //   }
+  // },
   methods: {
     async loadTexts (timeOffset = null) {
+      this.textsLoaded = false
       let response = await this.$axios.get(`/text/next?time=${timeOffset}`)
       let body = response.data
       this.texts = this.texts.concat(body.data)
-      //      this.texts = body.data
-      //    this.index = 0
+      this.textsLoaded = true
     },
     nextText () {
-      this.index++
-      if (this.index >= this.texts.length) return
-      this.viewText()
-      if (this.index === this.texts.length - 2) {
+      if (this.index < this.texts.length - 1) {
+        this.index++
+        this.viewText()
+      }
+      if (this.index >= this.texts.length - 2) {
         const latestTextTime = this.texts.reduce((a, v) => {
           if (v.time > a) {
             return v.time
@@ -76,23 +84,18 @@ export default {
         }, 0)
         this.loadTexts(latestTextTime)
       }
-      // if (index is close to last) load more
-    },
-    async viewText () {
-      this.$axios.post('/read', { text: this.text })
-      // TODO: retry?
     },
     async initializeTexts () {
-      await this.loadTexts()
       this.index = 0
+      await this.loadTexts()
       this.viewText()
+    },
+    async viewText () {
+      console.log('viewText', this.hasText)
+      if (!this.hasText) return
+      this.$axios.post('/read', { text: this.text })
+      // TODO: retry?
     }
-  },
-  async created () {
-    if (this.isAuthorized) {
-      this.initializeTexts()
-    }
-    // otherwise it will be called whenever isAuthorized is changed
   },
   async activated () {
     if (this.hasText) return
