@@ -51,11 +51,7 @@ import { ellipsis } from '@/modules/utils.js'
 export default {
   data () {
     return {
-      collections: [
-        { id: 1, title: 'notes', lastText: 'Lorem ipsum' },
-        { id: 2, title: 'quotes', lastText: 'Dolorem gisim kasi' }
-      ]
-
+      collections: [ ]
     }
   },
   computed: {
