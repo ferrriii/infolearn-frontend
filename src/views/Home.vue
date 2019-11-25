@@ -54,13 +54,13 @@ export default {
       return blackOrWhite(this.backgroundColor)
     }
   },
-  // watch: {
-  //   isAuthorized (newVal, oldVal) {
-  //     if (newVal) {
-  //       this.initializeTexts()
-  //     }
-  //   }
-  // },
+  watch: {
+    isAuthorized (newVal, oldVal) {
+      if (newVal) {
+        this.initializeTexts()
+      }
+    }
+  },
   methods: {
     async loadTexts (timeOffset = {}) {
       this.textsLoaded = false
