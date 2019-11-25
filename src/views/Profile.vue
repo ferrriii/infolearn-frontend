@@ -51,7 +51,8 @@ import { ellipsis } from '@/modules/utils.js'
 export default {
   data () {
     return {
-      collections: [ ]
+      collections: [ ],
+      isLoading: false
     }
   },
   computed: {
@@ -75,9 +76,12 @@ export default {
       }
     },
     async loadBooks () {
+      if (this.isLoading) return
+      this.isLoading = true
       let response = await this.$axios.get('/my/books')
       let body = response.data
       this.collections = body.data
+      this.isLoading = false
     },
     bookCreated (book) {
       this.collections.push(book)
@@ -87,6 +91,9 @@ export default {
     if (this.isAuthorized) {
       this.loadBooks()
     } // otherwise it will be loaded whenever isAurhorized is changed to true
+  },
+  activated () {
+    this.loadBooks()
   },
   components: {
     Card
