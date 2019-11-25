@@ -62,9 +62,9 @@ export default {
   //   }
   // },
   methods: {
-    async loadTexts (timeOffset = null) {
+    async loadTexts (timeOffset = {}) {
       this.textsLoaded = false
-      let response = await this.$axios.get(`/text/next?time=${timeOffset}`)
+      let response = await this.$axios.post('/text/next', { time: timeOffset })
       let body = response.data
       this.texts = this.texts.concat(body.data)
       this.textsLoaded = true
@@ -75,14 +75,14 @@ export default {
         this.viewText()
       }
       if (this.index >= this.texts.length - 2) {
-        const latestTextTime = this.texts.reduce((a, v) => {
-          if (v.time > a) {
-            return v.time
-          } else {
-            return a
+        const timeOffset = {}
+        this.texts.forEach(txt => {
+          let bookTime = timeOffset[txt.book.id] || 0
+          if (txt.time > bookTime) {
+            timeOffset[txt.book.id] = txt.time
           }
-        }, 0)
-        this.loadTexts(latestTextTime)
+        })
+        this.loadTexts(timeOffset)
       }
     },
     async initializeTexts () {
