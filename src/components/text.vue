@@ -16,7 +16,7 @@
         <span class="f6 ml1">{{text.numberOfLikes}}</span>
       </span>
       <span>
-        <font-awesome-icon :icon="['far', 'copy']" class="mh3" />
+        <font-awesome-icon @click.stop="copyText" :icon="['far', 'copy']" class="mh3" />
         <font-awesome-icon :icon="['far', 'bell']" />
       </span>
     </div>
@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import copy from 'text-copy'
+
 export default {
   props: ['text'],
   data () {
@@ -31,6 +33,9 @@ export default {
     }
   },
   methods: {
+    copyText () {
+      copy(this.text.text)
+    }
   }
 }
 </script>
