@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-column mw8 w-90 pt5 pt3-l">
+  <div class="flex flex-column mw8 w-90 pt4 pt3-l">
     <li class="flex items-center lh-copy pv3 pr3">
-      <img class="w2-5 h2-5 w3-ns h3-ns br-100 bg-silver" :src="`https://avatars.dicebear.com/v2/initials/${text.book.title}.svg`" />
+      <img class="w2-5 h2-5 w3-ns h3-ns br-100 bg-silver" alt="" :src="`https://avatars.dicebear.com/v2/initials/${text.book.title}.svg`" />
       <div class="pl3 flex-auto">
         <span class="f5 f4-ns db b">{{text.book.title}}</span>
         <span class="f6 f5-ns db o-70">{{text.author.name}}</span>
