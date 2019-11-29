@@ -1,6 +1,6 @@
 <template>
   <div @click="nextText" :style="{ backgroundColor, color}" class="about absolute top-0 w-100 flex flex-column flex-grow h-100 justify-between items-center disable-select bg-animate-slow">
-    <div class="mw-100 mw9-ns w-90 h-75 flex justify-center">
+    <div class="mw-100 mw9-ns w-90 h-100 flex justify-center">
 
       <text-display v-if="displayText" :text="text"/>
       <empty-text v-if="displayCTA" />
@@ -91,7 +91,6 @@ export default {
       this.viewText()
     },
     async viewText () {
-      console.log('viewText', this.hasText)
       if (!this.hasText) return
       this.$axios.post('/read', { text: this.text })
       // TODO: retry?

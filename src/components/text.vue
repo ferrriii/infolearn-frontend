@@ -8,9 +8,10 @@
       </div>
     </li>
     <transition name="fade" mode="out-in">
-      <h1 :key="text.id" dir="auto" class="f3 f2-m f1-l flex-grow flex flex-column justify-center ph3 pre-wrap overflow-hidden measure-narrow lh-copy">{{text.text}}</h1>
+      <!-- textarea can handle mixed ltr & rtl texts better -->
+      <textarea :key="text.id" v-model="text.text" @focus="changeFocus" dir="auto" readonly class="f3 f2-m f1-l flex-grow flex flex-column ph3 bg-transparent cursor-pointer bn outline-0 resize-none color-inherit overflow-hidden measure-narrow lh-copy"></textarea>
     </transition>
-    <div class="flex justify-between f3">
+    <div class="flex justify-between f3 mb4 mb5-l">
       <span class="flex items-center">
         <font-awesome-icon :icon="['far', 'heart']" />
         <span class="f6 ml1">{{text.numberOfLikes}}</span>
@@ -35,13 +36,19 @@ export default {
   methods: {
     copyText () {
       copy(this.text.text)
+    },
+    changeFocus () {
+      document.body.focus()
     }
   }
 }
 </script>
 
 <style>
-.pre-wrap {
-  white-space: pre-wrap;
+.cursor-pointer {
+  cursor: default;
+}
+.resize-none {
+  resize: none;
 }
 </style>
