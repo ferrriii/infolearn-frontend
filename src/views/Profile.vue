@@ -75,6 +75,12 @@ export default {
         this.$set(book, 'subscribed', true)
       }
     },
+    async unsubscribe (book) {
+      let response = await this.$axios.post('/unsubscribe', { book: book.id })
+      if (response.status === 204) {
+        this.$set(book, 'subscribed', false)
+      }
+    },
     async loadBooks () {
       if (this.isLoading) return
       this.isLoading = true
