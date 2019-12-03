@@ -14,12 +14,12 @@
     <div class="flex justify-between f3 mb4 mb5-l">
       <span class="flex items-center">
         <font-awesome-icon v-if="!text.liked" @click.stop="likeText" :icon="['far', 'heart']" class="cursor-hand" />
-        <font-awesome-icon v-if="text.liked" @click.stop="dislikeText" :icon="['fas', 'heart']" class="red cursor-hand"/>
+        <font-awesome-icon v-if="text.liked" @click.stop="dislikeText" :icon="['fas', 'heart']" class="red bounce cursor-hand"/>
         <span class="f6 ml2">{{text.numberOfLikes}}</span>
       </span>
       <span>
         <font-awesome-icon @click.stop="copyText" :icon="['far', 'copy']" class="mh3 cursor-hand" />
-        <font-awesome-icon :icon="['far', 'bell']" />
+        <!-- <font-awesome-icon :icon="['far', 'bell']" /> -->
       </span>
     </div>
   </div>
@@ -69,5 +69,22 @@ export default {
 }
 .resize-none {
   resize: none;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: scale(1.3);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+}
+
+.bounce {
+  animation: bounce 0.5s linear;
 }
 </style>
