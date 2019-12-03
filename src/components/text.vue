@@ -14,7 +14,7 @@
     <div class="flex justify-between f3 mb4 mb5-l">
       <span class="flex items-center">
         <font-awesome-icon v-if="!text.liked" @click.stop="likeText" :icon="['far', 'heart']" class="cursor-hand" />
-        <font-awesome-icon v-if="text.liked" @click.stop="dislikeText" :icon="['fas', 'heart']" class="red bounce cursor-hand"/>
+        <font-awesome-icon v-if="text.liked" @click.stop="dislikeText" :icon="['fas', 'heart']" class="red cursor-hand" :class="{'bounce':isBounce}"/>
         <span class="f6 ml2">{{text.numberOfLikes}}</span>
       </span>
       <span>
@@ -32,6 +32,7 @@ export default {
   props: ['text'],
   data () {
     return {
+      isBounce: false
     }
   },
   methods: {
@@ -41,15 +42,18 @@ export default {
     async likeText () {
       this.text.numberOfLikes++
       this.text.liked = true
+      this.isBounce = true
       let response = await this.$axios.get('/like/' + this.text.id)
       if (response.status !== 204) {
         this.text.numberOfLikes--
         this.text.liked = false
+        this.isBounce = false
       }
     },
     async dislikeText () {
       this.text.numberOfLikes--
       this.text.liked = false
+      this.isBounce = false
       let response = await this.$axios.get('/removelike/' + this.text.id)
       if (response.status !== 204) {
         this.text.numberOfLikes++
