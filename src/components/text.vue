@@ -13,11 +13,12 @@
     </transition>
     <div class="flex justify-between f3 mb4 mb5-l">
       <span class="flex items-center">
-        <font-awesome-icon :icon="['far', 'heart']" />
-        <span class="f6 ml1">{{text.numberOfLikes}}</span>
+        <font-awesome-icon v-if="!text.liked" @click.stop="likeText" :icon="['far', 'heart']" class="cursor-hand" />
+        <font-awesome-icon v-if="text.liked" @click.stop="dislikeText" :icon="['fas', 'heart']" class="red cursor-hand"/>
+        <span class="f6 ml2">{{text.numberOfLikes}}</span>
       </span>
       <span>
-        <font-awesome-icon @click.stop="copyText" :icon="['far', 'copy']" class="mh3" />
+        <font-awesome-icon @click.stop="copyText" :icon="['far', 'copy']" class="mh3 cursor-hand" />
         <font-awesome-icon :icon="['far', 'bell']" />
       </span>
     </div>
@@ -36,6 +37,20 @@ export default {
   methods: {
     copyText () {
       copy(this.text.text)
+    },
+    async likeText () {
+      let response = await this.$axios.get('/like/' + this.text.id)
+      if (response.status === 204) {
+        this.text.numberOfLikes++
+        this.text.liked = true
+      }
+    },
+    async dislikeText () {
+      let response = await this.$axios.get('/removelike/' + this.text.id)
+      if (response.status === 204) {
+        this.text.numberOfLikes--
+        this.text.liked = false
+      }
     },
     changeFocus () {
       document.body.focus()
