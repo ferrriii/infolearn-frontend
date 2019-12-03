@@ -70,15 +70,17 @@ export default {
       return ellipsis(str, 19 + (window.screen.width - 375) / 20)
     },
     async subscribe (book) {
+      this.$set(book, 'subscribed', true)
       let response = await this.$axios.post('/subscribe', { book: book.id })
-      if (response.status === 204) {
-        this.$set(book, 'subscribed', true)
+      if (response.status !== 204) {
+        this.$set(book, 'subscribed', false)
       }
     },
     async unsubscribe (book) {
+      this.$set(book, 'subscribed', false)
       let response = await this.$axios.post('/unsubscribe', { book: book.id })
-      if (response.status === 204) {
-        this.$set(book, 'subscribed', false)
+      if (response.status !== 204) {
+        this.$set(book, 'subscribed', true)
       }
     },
     async loadBooks () {

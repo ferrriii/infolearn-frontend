@@ -39,17 +39,21 @@ export default {
       copy(this.text.text)
     },
     async likeText () {
+      this.text.numberOfLikes++
+      this.text.liked = true
       let response = await this.$axios.get('/like/' + this.text.id)
-      if (response.status === 204) {
-        this.text.numberOfLikes++
-        this.text.liked = true
+      if (response.status !== 204) {
+        this.text.numberOfLikes--
+        this.text.liked = false
       }
     },
     async dislikeText () {
+      this.text.numberOfLikes--
+      this.text.liked = false
       let response = await this.$axios.get('/removelike/' + this.text.id)
-      if (response.status === 204) {
-        this.text.numberOfLikes--
-        this.text.liked = false
+      if (response.status !== 204) {
+        this.text.numberOfLikes++
+        this.text.liked = true
       }
     },
     changeFocus () {
