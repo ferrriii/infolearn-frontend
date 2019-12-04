@@ -35,6 +35,11 @@ export default {
       isBounce: false
     }
   },
+  watch: {
+    text () {
+      this.isBounce = false
+    }
+  },
   methods: {
     copyText () {
       copy(this.text.text)
