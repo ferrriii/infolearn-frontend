@@ -76,9 +76,6 @@ export default {
 .cursor-pointer {
   cursor: default;
 }
-.resize-none {
-  resize: none;
-}
 
 @keyframes bounce {
   0%,

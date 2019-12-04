@@ -60,7 +60,4 @@ export default {
 </script>
 
 <style>
-.resize-none {
-  resize: none;
-}
 </style>
