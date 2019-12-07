@@ -60,9 +60,15 @@ export default {
     async search () {
       if (this.query === '') {
         this.collections = []
+        this.topBooks()
         return
       }
       let response = await this.$axios.post('/search/books', { q: this.query })
+      let body = response.data
+      this.collections = body.data
+    },
+    async topBooks () {
+      let response = await this.$axios.get('/books')
       let body = response.data
       this.collections = body.data
     },
@@ -82,7 +88,10 @@ export default {
     }
   },
   activated () {
-    if (!this.$route.query.q) return
+    if (!this.$route.query.q) {
+      this.topBooks()
+      return
+    }
     this.q = this.$route.query.q
     this.$refs.query.value = this.q
   },
