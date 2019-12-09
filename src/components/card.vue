@@ -1,5 +1,5 @@
 <template>
-  <article class="dt w-100 pb2 mt2" href="#0">
+  <article class="dt w-100 pv1 mt2 hover-bg-black-10" href="#0">
     <div class="dtc w2-5 w3-ns v-mid">
       <img class="w2-5 h2-5 w3-ns h3-ns br-100 bg-secondary" alt="" :src="img" />
     </div>
