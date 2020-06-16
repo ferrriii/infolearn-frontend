@@ -3,6 +3,8 @@ InfoLearn is a social network for learning. You can publish short texts and Info
 
 This repository is the frontend code in VueJs. it proivdes user interface for InfoLearn.
 
+![](resources/infolearn-demo.gif)
+
 ## Setup
 Create an `.env.developement` and `.env.production` files in the root with below contents
 ```
