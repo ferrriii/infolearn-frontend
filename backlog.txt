@@ -1,8 +1,13 @@
-
-refactor: cleanup & seperate
-
-show CTA for subscription if there's nothing to view
+stop repeating
+previous
+book view
+user profile
 private public books
-likes for texts
-
-write tests
+search texts
+registration
+search people
+deleting texts
+deleting books
+notification for copy, say copied
+show top books based on number of likes, views, texts, last updated, etc.
+bug:when deviceId is deleted, nothing is loaded: regenerated new id
